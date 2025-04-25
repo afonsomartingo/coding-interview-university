@@ -26,18 +26,25 @@ class Vector:
         """
         Return the number of items in the vector.
         """
+        print(f"The size of the vector is {self._size}")
         return self._size
 
     def capacity(self):
         """
         Return the current capacity of the vector.
         """
-        self._capacity
+        print(f"The capacity of the vector is {self._capacity}")
+        return self._capacity
 
     def is_empty(self):
         """
         Return True if the vector is empty, False otherwise.
         """
+        if self._size == 0:
+            return True
+        else:
+            return False
+
         pass
 
     def at(self, index):
@@ -111,4 +118,7 @@ class Vector:
 
 
 vec_test = Vector(initial_capacity=20)
-print({vec_test.size})
+vec_test.size()
+vec_test.capacity()
+print({vec_test.is_empty()})
+
