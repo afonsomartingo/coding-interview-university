@@ -51,13 +51,19 @@ class Vector:
         """
         Return the item at the given index. Raise IndexError if out of bounds.
         """
-        pass
+        if index < 0 or index >= self._size:
+            raise IndexError("Index is out of bounds")
+        return self._data[index]
+    
 
     def push(self, item):
         """
         Add an item to the end of the vector, resizing if necessary.
         """
-        pass
+        if self._size == self._capacity:
+            self._resize(self._capacity * 2)
+        self._data[self._size] = item
+        self._size += 1
 
     def insert(self, index, item):
         """
@@ -120,5 +126,8 @@ class Vector:
 vec_test = Vector(initial_capacity=20)
 vec_test.size()
 vec_test.capacity()
+
 print({vec_test.is_empty()})
 
+vec_test.push(42)
+print(vec_test.at(0))  # Agora deve funcionar e mostrar 42
