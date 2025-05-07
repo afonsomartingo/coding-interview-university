@@ -126,7 +126,16 @@ class Vector:
         """
         Remove all occurrences of item from the vector.
         """
-        pass
+        i = 0
+        while i < self._size:
+            if self._data[i] == item:
+                # Shift elements to the left
+                for j in range(i, self._size - 1):
+                    self._data[j] = self._data[j + 1]
+                self._size -= 1  # Decrement size
+            else:
+                i += 1  # Only increment if no removal
+
 
     def find(self, item):
         """
