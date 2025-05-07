@@ -141,8 +141,12 @@ class Vector:
         """
         Return the index of the first occurrence of item, or -1 if not found.
         """
-        pass
-
+        for i in range(0, self._size):
+            if self._data[i] == item:
+                return i
+        return -1  # Return -1 only after checking all elements
+    
+    
     def _resize(self, new_capacity):
         """
         Private method to resize the underlying array to new_capacity.
