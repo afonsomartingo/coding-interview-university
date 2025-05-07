@@ -70,27 +70,57 @@ class Vector:
         Insert item at the given index, shifting subsequent elements right.
         Raise IndexError if index is out of bounds.
         """
-        pass
+        if index < 0 or index > self._size:
+            raise IndexError("index is out of bounds")
+        if self._size == self._capacity:
+            self._resize(self._capacity * 2)
+
+        # Desloca os elementos para a direita
+        for i in range(self._size, index, -1): 
+            self._data[i] = self._data[i - 1]
+        self._data[index] = item
+        self._size += 1
 
     def prepend(self, item):
         """
         Insert item at the beginning of the vector.
         """
-        pass
+        if self._size == self._capacity:
+            self._resize(self._capacity * 2)
+
+        # Shift elements to the right
+        for i in range(self._size, 0, -1):
+            self._data[i] = self._data[i - 1]
+        self._data[0] = item
+        self._size += 1
+        
 
     def pop(self):
         """
         Remove and return the last item. Raise IndexError if empty.
         Resize if size is 1/4 of capacity.
         """
-        pass
+        if self._size == 0:
+            raise IndexError("Vector is empty")
+        
+        item = self._data[self._size - 1]
+        self._data[self._size - 1] = 0
+        self._size -= 1
+
+        if self._size <= self._capacity / 4:
+            self._resize(self._capacity // 2)
+        return item
 
     def delete(self, index):
         """
         Delete item at index, shifting subsequent elements left.
         Raise IndexError if out of bounds.
         """
-        pass
+        if index < 0 or index >= self._size:
+            raise IndexError("Index out of bounds")
+        for i in range(index, self._size-1):
+            self._data[i] = self._data[i+1]
+        self._size -= 1
 
     def remove(self, item):
         """
